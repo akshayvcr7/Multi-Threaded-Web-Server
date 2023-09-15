@@ -42,7 +42,7 @@ public:
     void socket_connection_init(void);
     void socket_connection_accept(void);
     static void *serve_request(void *);
-    
+
 };
 
 void get_image_path( string buff, char *img_path) {
@@ -60,7 +60,7 @@ void get_image_path( string buff, char *img_path) {
     }
     cout << "word is " << word << endl;
     strcat(img_path, word.c_str());
-    
+
 }
 
 char *read_file(FILE *fpipe) {
@@ -71,7 +71,7 @@ char *read_file(FILE *fpipe) {
   while ((c = fgetc(fpipe)) != EOF) {
     file_buff[ind++] = c;
     if (ind == len) {
-      len = len * 10; 
+      len = len * 10;
       char *mod_buff = new char[len];
       memcpy(mod_buff, file_buff, len);
       free(file_buff);
@@ -84,7 +84,7 @@ char *read_file(FILE *fpipe) {
 
 query_arg query_string(string buff) {
     char cgi_path[1024];
-    
+
     query_arg q1;
     string word;
     get_image_path(buff, cgi_path);
@@ -101,7 +101,7 @@ query_arg query_string(string buff) {
             cout <<"query is "<< word << endl;
         }
     }
-    
+
     return q1;
 }
 
@@ -119,7 +119,7 @@ void execute_cgi_script(void *S, string buff) {
 
     if (!file_stream) {
         perror("file popen error");
-    } 
+    }
     else {
         char* result = read_file(file_stream);
         char http_header[25] = "HTTP/1.1 200 OK\r\n";
@@ -133,7 +133,7 @@ void execute_cgi_script(void *S, string buff) {
   }
   free(exec_cmd);
   pclose(file_stream);
-    
+
 
 }
 
@@ -151,7 +151,7 @@ void send_static_file(void *S, string buff){
     strcat(http, "Content-Type: text/html\r\n");
 
     int fd_img = open(img_path, O_RDONLY);
-    
+
     if(fd_img < 0){
         printf("Cannot Open file path : %s with error %d\n", img_path, fd_img);
         exit(1);
@@ -287,7 +287,7 @@ void *server::serve_request(void *S)
     server_inst->soc_req.pop();
 
     pthread_mutex_unlock(&q_lock);
-    
+
     }
     return NULL;
 }
@@ -347,7 +347,7 @@ int main(int argc, char *argv[])
     }
 
     socket->socket_connection_accept();
-    
+
 
 exit:
     return 0;

@@ -1,0 +1,4 @@
+/home/av/Downloads/web_server/.build/CMakeFiles/av_server.dir
+/home/av/Downloads/web_server/.build/CMakeFiles/av_client.dir
+/home/av/Downloads/web_server/.build/CMakeFiles/edit_cache.dir
+/home/av/Downloads/web_server/.build/CMakeFiles/rebuild_cache.dir

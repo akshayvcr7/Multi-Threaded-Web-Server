@@ -13,7 +13,6 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 
 include_directories("${PROJECT_SOURCE_DIR}")
 
-
 # add the executable
 add_executable(av_server ${PROJECT_SOURCE_DIR}/av_server.cpp)
 

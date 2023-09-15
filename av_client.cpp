@@ -21,7 +21,7 @@ class client {
 public:
     int sock, valread, client_fd, port, shed_algo, thread;
     char *host;
-    pthread_barrier_t barrier; 
+    pthread_barrier_t barrier;
     pthread_barrierattr_t attr;
     struct sockaddr_in serv_addr;
     const char* hello;
@@ -54,18 +54,18 @@ void *client::socket_connect(void *C)
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         perror("\n Socket creation error \n");
         exit(1);
-    }   
+    }
     //serv_addr.sin_addr.s_addr = INADDR_ANY;
-  
+
     // Convert IPv4 and IPv6 addresses from text to binary
     // form
-    if ((inet_pton(AF_INET, "127.0.0.1", &Cli->serv_addr.sin_addr)) <= 0) 
+    if ((inet_pton(AF_INET, "127.0.0.1", &Cli->serv_addr.sin_addr)) <= 0)
     {
         perror("\nInvalid address/ Address not supported \n");
         exit(1);
     }
-  
-    if ((client_fd = connect(sock, (struct sockaddr*)&Cli->serv_addr, sizeof(serv_addr)))< 0) 
+
+    if ((client_fd = connect(sock, (struct sockaddr*)&Cli->serv_addr, sizeof(serv_addr)))< 0)
     {
         perror("\nConnection Failed \n");
         exit(1);
@@ -139,9 +139,9 @@ int main(int argc, char *argv[])
     socket->serv_addr.sin_port = htons(8080);
 
     pthread_t cli_th[socket->thread];
-    
+
     unsigned count =  socket->thread;
-    int ret; 
+    int ret;
     ret = pthread_barrier_init(&socket->barrier, &socket->attr, count);
     if (ret < 0)
     {
